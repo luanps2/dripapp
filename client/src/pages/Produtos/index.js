@@ -29,11 +29,11 @@ const handleClickButton = () => {
 
                         <div className="container">
                             <h1 class="text-center">Cadastrar Produtos</h1>
-                            <input type="text" name="nome" placeholder="Nome" className="register--input" onChange={handleChangeValues}></input> <br />
-                            <input type="text" name="preco" placeholder="Preço" className="register--input" onChange={handleChangeValues}></input><br />
-                            <input type="text" name="idCategoria" placeholder="ID da categoria" className="register--input" onChange={handleChangeValues}></input><br />
-                            <input type="text" name="vendedor" placeholder="Vendedor" className="register--input" onChange={handleChangeValues}></input><br />
-                            <input type="text" name="qtd" placeholder="Qtd." className="register--input" onChange={handleChangeValues}></input><br /><br />
+                            <input type="text" name="nome_produto" placeholder="Nome" className="register--input" onChange={handleChangeValues}></input> <br />
+                            <input type="text" name="preco_produto" placeholder="Preço" className="register--input" onChange={handleChangeValues}></input><br />
+                            <input type="text" name="id_categoria" placeholder="ID da categoria" className="register--input" onChange={handleChangeValues}></input><br />
+                            <input type="text" name="vendedor_id" placeholder="ID Vendedor" className="register--input" onChange={handleChangeValues}></input><br />
+                            <input type="text" name="qtd_estoque" placeholder="Qtd." className="register--input" onChange={handleChangeValues}></input><br /><br />
 
                             <button className="register--button" class="btn btn-success" onClick={() => handleClickButton()}>Adicionar Produto</button>
                         </div>

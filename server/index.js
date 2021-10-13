@@ -54,23 +54,23 @@ app.post("/login", (req, res) => {
             bcrypt.compare(password, result[0].password,
                 (erro, result) => {
                     if (result) {
-                     
+
                         res.redirect('http://localhost:3000/');
-                        
-                        
+
+
                         // if (response.data.status == 200) {
                         //     <Route exact path="../home">
                         //         <Home />
                         //     </Route>
                         // }
-                    }else{
+                    } else {
                         res.send("Senha Incorreta!");
                     }
                 });
         } else {
             res.send({ msg: "conta não encontrada" });
         }
-     
+
     });
 });
 // app.get('/', (req, res) =>{
@@ -83,11 +83,19 @@ app.post("/login", (req, res) => {
 // })
 
 app.post("/produtos", (req, res) => {
-    let SQL = "INSERT INTO produtos (nome, preco, categoria, vendedor, qtd) values ('nike', 200, 'tenis', 'murilo', 20)";
-    db.query(SQL, (err, result)=>{
-        console.log(err);
-    })
-})
+
+    const produto = req.body.nome_produto;
+    const preco = req.body.preco_produto;
+    const categoria_id = req.body.id_categoria;
+    const vendedor_id = req.body.vendedor_id;
+    const qtd_estoque = req.body.qtd_estoque;
+
+    db.query("INSERT INTO produto (nome_produto, preco_produto, categoria_id, vendedor_id, qtd_estoque) values (?,?,?,?,?)",
+        [produto, preco, categoria_id, vendedor_id, qtd_estoque]);
+    res.send({ msg: "poduto cadastrado com sucesso!" });
+});
+
+
 
 
 
