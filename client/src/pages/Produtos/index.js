@@ -1,127 +1,119 @@
-import React, {useState} from "react";
-import '../../../src/App.css';
+import React from "react";
+
+
+import { AreaProdutos } from './styled'
 import { ContainerPage, TitlePage } from "../../componets/Main";
+import '../../../src/App.css';
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import Axios from "axios";
+// import * as yup from "yup";
 
 const Page = () => {
-const [values, setValues] = useState();
+    const handleClickCadastro = (values) => {
+        Axios.post("http://localhost:3001/produtos", {
+            
+            nome_produto: values.nome_produto,
+            preco_produto: values.preco_produto,
+            categoria_id: values.categoria_id,
+            vendedor_id: values.vendedor_id,
+            qtd_estoque: values.qtd_estoque,
 
-const handleChangeValues = (value) => {
-    setValues(prevValue=>({
-        ...prevValue,
-        [value.target.name]: value.target.value,
+        }).then((response) => {
+            console.log(response);
+            alert(response.data.msg);
+        });
+    };
 
-    }));
-};
-
-const handleClickButton = () => {
-    console.log(values);
-};
-
+    
     return (
-
         <ContainerPage>
-            <TitlePage>
-
-                <div className="app--container">
-                    <div className="register--container">
-
-
-
-                        <div className="container">
-                            <h1 class="text-center">Cadastrar Produtos</h1>
-                            <input type="text" name="nome_produto" placeholder="Nome" className="register--input" onChange={handleChangeValues}></input> <br />
-                            <input type="text" name="preco_produto" placeholder="Preço" className="register--input" onChange={handleChangeValues}></input><br />
-                            <input type="text" name="id_categoria" placeholder="ID da categoria" className="register--input" onChange={handleChangeValues}></input><br />
-                            <input type="text" name="vendedor_id" placeholder="ID Vendedor" className="register--input" onChange={handleChangeValues}></input><br />
-                            <input type="text" name="qtd_estoque" placeholder="Qtd." className="register--input" onChange={handleChangeValues}></input><br /><br />
-
-                            <button className="register--button" class="btn btn-success" onClick={() => handleClickButton()}>Adicionar Produto</button>
-                        </div>
-
-
-
-                    </div>
-
-                </div>
-
-
+            <AreaProdutos>
+                <TitlePage>
                 <div className="container">
-                    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-                    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
-                    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+                    <h1>Produtos</h1>
+                    <div>
+                        <Formik initialValues={{}}
+                            onSubmit={handleClickCadastro} >
+                            <Form className="produtos-form">
 
-                    <h1 class="text-center">Listar Produtos</h1>
+                          
+                                <div className="produtos-form-group">
+                                    <Field
+                                        name="nome_produto"
+                                        className="form-field"
+                                        placeHolder="Nome do Produto" />
 
-                    <div class="form-group input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-                        <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control" />
+                                    <ErrorMessage
+                                        component="span"
+                                        name="nome_produto"
+                                        className="form-error" />
+                                </div>
+                          
+                          
+                                <div className="produtos-form-group">
+                                    <Field
+                                        name="preco_produto"
+                                        className="form-field"
+                                        placeHolder="Preço do Produto" />
+
+                                    <ErrorMessage
+                                        component="span"
+                                        name="preco_produto"
+                                        className="form-error" />
+                                </div>
+                          
+
+                                <div className="produtos-form-group">
+                                    <Field
+                                        name="categoria_id"
+                                        className="form-field"
+                                        placeHolder="ID da Categoria" />
+
+                                    <ErrorMessage
+                                        component="span"
+                                        name="preco_produto"
+                                        className="form-error" />
+                                </div>
+                          
+
+                                <div className="produtos-form-group">
+                                    <Field
+                                        name="vendedor_id"
+                                        className="form-field"
+                                        placeHolder="ID do Vendedor" />
+
+                                    <ErrorMessage
+                                        component="span"
+                                        name="vendedor_id"
+                                        className="form-error" />
+                                </div>
+                          
+
+                                <div className="produtos-form-group">
+                                    <Field
+                                        name="qtd_estoque"
+                                        className="form-field"
+                                        placeHolder="Quantidade" />
+
+                                    <ErrorMessage
+                                        component="span"
+                                        name="qtd_estoque"
+                                        className="form-error" />
+                                </div> <br/>
+
+                             
+
+                                <button
+                                    className="button"
+                                    type="submit" class="btn btn-success">Cadastrar</button>
+
+                            </Form>
+                        </Formik>
+                        </div>
                     </div>
-
-
-
-                    <table id="tabela" class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>Preço</th>
-                                <th>ID Categoria</th>
-                                <th>Vendedor</th>
-                                <th>Qtd</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>1</th>
-                                <td>Nike Air 360</td>
-                                <td>R$756,45</td>
-                                <td>Tênis</td>
-                                <td>1</td>
-                                <td>5</td>
-                            </tr>
-
-                            <tr>
-                                <th>2</th>
-                                <td>Nike Shox R4</td>
-                                <td>R$875,57</td>
-                                <td>Tênis</td>
-                                <td>1</td>
-                                <td>15</td>
-                            </tr>
-
-
-                            <tr>
-                                <th>3</th>
-                                <td>Casaco Abercrombie</td>
-                                <td>R$987,65</td>
-                                <td>Blusas</td>
-                                <td>2</td>
-                                <td>10</td>
-                            </tr>
-
-
-                            <tr>
-                                <th>4</th>
-                                <td>Calça Calvin Klein</td>
-                                <td>R$687,25</td>
-                                <td>Calças</td>
-                                <td>3</td>
-                                <td>2</td>
-                            </tr>
-
-
-                        </tbody>
-                    </table>
-
-
-
-                    <script>
-                        $('input#txt_consulta').quicksearch('table#tabela tbody tr');
-                    </script>
-                </div>
-            </TitlePage>
-        </ContainerPage>
+                </TitlePage>
+            </AreaProdutos>
+        </ContainerPage >
     );
 }
 

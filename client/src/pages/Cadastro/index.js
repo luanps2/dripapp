@@ -11,8 +11,14 @@ import * as yup from "yup";
 const Page = () => {
     const handleClickCadastro = (values) => {
         Axios.post("http://localhost:3001/register", {
-            email: values.email,
-            password: values.password,
+            endereco_cliente: values.endereco_cliente,
+            nome_cliente: values.nome_cliente,
+            cel_cliente: values.cel_cliente,
+            email_cliente: values.email_cliente,
+            senha_cliente: values.senha_cliente,
+            datanasc_cliente: values.datanasc_cliente,
+            rg_cliente: values.rg_cliente,
+            cpf_cliente: values.cpf_cliente,
         }).then((response) => {
             console.log(response);
             alert(response.data.msg);
@@ -46,9 +52,9 @@ const Page = () => {
 
                                 <div className="login-form-group">
                                     <Field
-                                        name="email"
+                                        name="nome_cliente"
                                         className="form-field"
-                                        placeHolder="Email" />
+                                        placeHolder="Nome" />
 
                                     <ErrorMessage
                                         component="span"
@@ -58,8 +64,33 @@ const Page = () => {
 
                                 <div className="login-form-group">
                                     <Field
+                                        name="cel_cliente"
+                                        className="form-field"
+                                        placeHolder="Celular" />
+
+                                    <ErrorMessage
+                                        component="span"
+                                        name="cel_cliente"
+                                        className="form-error" />
+                                </div>
+
+                                <div className="login-form-group">
+                                    <Field
+                                        name="email_cliente"
+                                        className="form-field"
+                                        placeHolder="Email" />
+
+                                    <ErrorMessage
+                                        component="span"
+                                        name="email_cliente"
+                                        className="form-error" />
+                                </div>
+
+                                <div className="login-form-group">
+                                    <Field
                                         name="password"
                                         className="form-field"
+                                        type="password"
                                         placeHolder="Senha" />
 
                                     <ErrorMessage
@@ -72,13 +103,64 @@ const Page = () => {
                                     <Field
                                         name="confirmPassword"
                                         className="form-field"
+                                        type="password"
                                         placeHolder="Confirme sua Senha" />
 
                                     <ErrorMessage
                                         component="span"
                                         name="confirmPassword"
                                         className="form-error" />
-                                </div> <br />
+                                    </div> 
+
+                                <div className="login-form-group">
+                                    <Field
+                                        name="datanasc_cliente"
+                                        className="form-field"
+                                        placeHolder="Data de Nascimento" />
+
+                                    <ErrorMessage
+                                        component="span"
+                                        name="datanasc_cliente"
+                                        className="form-error" />
+                                </div> 
+
+                                <div className="login-form-group">
+                                    <Field
+                                        name="endereco_cliente"
+                                        className="form-field"
+                                        placeHolder="Endereço" />
+
+                                    <ErrorMessage
+                                        component="span"
+                                        name="endereco_cliente"
+                                        className="form-error" />
+                                </div> 
+
+                                <div className="login-form-group">
+                                    <Field
+                                        name="rg_cliente"
+                                        className="form-field"
+                                        placeHolder="RG" />
+
+                                    <ErrorMessage
+                                        component="span"
+                                        name="rg_cliente"
+                                        className="form-error" />
+                                </div> 
+
+                                <div className="login-form-group">
+                                    <Field
+                                        name="cpf_cliente"
+                                        className="form-field"
+                                        placeHolder="CPF" />
+
+                                    <ErrorMessage
+                                        component="span"
+                                        name="cpf_cliente"
+                                        className="form-error" />
+                                </div> 
+                                
+                                <br />
 
                                 <button
                                     className="button"
