@@ -10,7 +10,7 @@ const db = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "admin",
-    database: "banco"
+    database: "driprestes"
 });
 
 app.use(express.json());
@@ -86,13 +86,17 @@ app.post("/produtos", (req, res) => {
 
     const produto = req.body.nome_produto;
     const preco = req.body.preco_produto;
-    const categoria_id = req.body.id_categoria;
+    const categoria_id = req.body.categoria_id;
     const vendedor_id = req.body.vendedor_id;
     const qtd_estoque = req.body.qtd_estoque;
+const sql = "INSERT INTO produto (nome_produto, preco_produto, categoria_id, vendedor_id, qtd_estoque) values (?,?,?,?,?);";
 
-    db.query("INSERT INTO produto (nome_produto, preco_produto, categoria_id, vendedor_id, qtd_estoque) values (?,?,?,?,?)",
-        [produto, preco, categoria_id, vendedor_id, qtd_estoque]);
-    res.send({ msg: "poduto cadastrado com sucesso!" });
+    db.query(sql, [produto, preco, categoria_id, vendedor_id, qtd_estoque], (erro, result) => {
+        if (erro) {
+            res.send(erro);
+        }
+        res.send({ msg: "Produto cadastrado com sucesso!" });
+    });
 });
 
 

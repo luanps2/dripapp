@@ -60,6 +60,7 @@ const Page = () => {
                                     <Field
                                         name="password"
                                         className="form-field"
+                                        type="password"
                                         placeHolder="Senha" />
 
                                     <ErrorMessage
@@ -72,6 +73,7 @@ const Page = () => {
                                     <Field
                                         name="confirmPassword"
                                         className="form-field"
+                                        type="password"
                                         placeHolder="Confirme sua Senha" />
 
                                     <ErrorMessage

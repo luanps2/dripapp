@@ -15,8 +15,6 @@ const Page = () => {
         }).then((response) => {
             console.log(response)
             alert(response.data);
-           
-
         })
     };
 
