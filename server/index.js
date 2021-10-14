@@ -89,10 +89,14 @@ app.post("/produtos", (req, res) => {
     const categoria_id = req.body.id_categoria;
     const vendedor_id = req.body.vendedor_id;
     const qtd_estoque = req.body.qtd_estoque;
+    const sql = "INSERT INTO produto (nome_produto, preco_produto, categoria_id, vendedor_id, qtd_estoque) values (?,?,?,?,?)"
+    db.query(sql, [produto, preco, categoria_id, vendedor_id, qtd_estoque], (err, result) => {
+        if (err) {
+            alert(err)
+        };
+        res.send({ msg: "poduto cadastrado com sucesso!" });
+    });
 
-    db.query("INSERT INTO produto (nome_produto, preco_produto, categoria_id, vendedor_id, qtd_estoque) values (?,?,?,?,?)",
-        [produto, preco, categoria_id, vendedor_id, qtd_estoque]);
-    res.send({ msg: "poduto cadastrado com sucesso!" });
 });
 
 
