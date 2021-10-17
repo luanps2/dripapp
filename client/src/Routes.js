@@ -7,7 +7,7 @@ import Cadastro from './pages/Cadastro';
 import Produtos from './pages/Produtos';
 import Sobre from './pages/Sobre';
 
-export default () => {  
+const func = () => {  
     return (
         <Switch>
             <Route exact path="/">
@@ -41,3 +41,5 @@ export default () => {
         </Switch>
     )
 }
+
+export default func;

@@ -9,7 +9,7 @@ function Header() {
         <AreaHeader>
             <div className="barra">
                 <div className="logo">
-                    <img src="https://driprestes.000webhostapp.com/img/logo2.png"></img>
+                    <img src="https://driprestes.000webhostapp.com/img/logo2.png" alt="logo"></img>
                 </div>
 
                 <nav>

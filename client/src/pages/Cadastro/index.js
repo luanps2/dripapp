@@ -10,7 +10,10 @@ import * as yup from "yup";
 
 const Page = () => {
     const handleClickCadastro = (values) => {
-        Axios.post("http://localhost:3001/register", {
+
+       
+        Axios.post("http://localhost:3001/cadastro", {
+
             endereco_cliente: values.endereco_cliente,
             nome_cliente: values.nome_cliente,
             cel_cliente: values.cel_cliente,
@@ -19,155 +22,158 @@ const Page = () => {
             datanasc_cliente: values.datanasc_cliente,
             rg_cliente: values.rg_cliente,
             cpf_cliente: values.cpf_cliente,
+
         }).then((response) => {
             console.log(response);
             alert(response.data.msg);
         });
     };
 
-    const validationRegister = yup.object().shape({
-        email: yup
-            .string()
-            .email("Não é um email")
-            .required("Este campo é obrigatório"),
-        password: yup
-            .string()
-            .min(4, "A senha deve ter 4 caracteres")
-            .required("Este campo é obrigatório"),
-        confirmPassword: yup
-            .string()
-            .oneOf([yup.ref("password"), null], "As senhas não são iguais!"),
+    // const validationRegister = yup.object().shape({
+    //     email: yup
+    //         .string()
+    //         .email("Não é um email")
+    //         .required("Este campo é obrigatório"),
+    //     senha_cliente: yup
+    //         .string()
+    //         .min(4, "A senha deve ter 4 caracteres")
+    //         .required("Este campo é obrigatório"),
+    //     confirmPassword: yup
+    //         .string()
+    //         .oneOf([yup.ref("senha_cliente"), null], "As senhas não são iguais!"),
+    // });
 
-    });
     return (
         <ContainerPage>
             <AreaCadastro>
                 <TitlePage>
-                <div className="container">
-                    <h1>Cadastro</h1>
-                    <div>
-                        <Formik initialValues={{}}
-                            onSubmit={handleClickCadastro} validationSchema={validationRegister} >
-                            <Form className="login-form">
+                    <div className="container">
+                        <h1>Cadastro</h1>
+                        <div>
+                            <Formik initialValues={{}}
+                                onSubmit={handleClickCadastro}  >
+                                    {/* validationSchema={validationRegister} */}
 
-                                <div className="login-form-group">
-                                    <Field
-                                        name="nome_cliente"
-                                        className="form-field"
-                                        placeHolder="Nome" />
+                                <Form className="cadastro-form">
 
-                                    <ErrorMessage
-                                        component="span"
-                                        name="email"
-                                        className="form-error" />
-                                </div>
+                                    <div className="cadastro-form-group">
+                                        <Field
+                                            name="nome_cliente"
+                                            className="form-field"
+                                            placeHolder="Nome" />
 
-                                <div className="login-form-group">
-                                    <Field
-                                        name="cel_cliente"
-                                        className="form-field"
-                                        placeHolder="Celular" />
+                                        <ErrorMessage
+                                            component="span"
+                                            name="nome_cliente"
+                                            className="form-error" />
+                                    </div>
 
-                                    <ErrorMessage
-                                        component="span"
-                                        name="cel_cliente"
-                                        className="form-error" />
-                                </div>
+                                    <div className="cadastro-form-group">
+                                        <Field
+                                            name="cel_cliente"
+                                            className="form-field"
+                                            placeHolder="Celular" />
 
-                                <div className="login-form-group">
-                                    <Field
-                                        name="email_cliente"
-                                        className="form-field"
-                                        placeHolder="Email" />
+                                        <ErrorMessage
+                                            component="span"
+                                            name="cel_cliente"
+                                            className="form-error" />
+                                    </div>
 
-                                    <ErrorMessage
-                                        component="span"
-                                        name="email_cliente"
-                                        className="form-error" />
-                                </div>
+                                    <div className="cadastro-form-group">
+                                        <Field
+                                            name="email_cliente"
+                                            className="form-field"
+                                            placeHolder="Email" />
 
-                                <div className="login-form-group">
-                                    <Field
-                                        name="password"
-                                        className="form-field"
-                                        type="password"
-                                        placeHolder="Senha" />
+                                        <ErrorMessage
+                                            component="span"
+                                            name="email_cliente"
+                                            className="form-error" />
+                                    </div>
 
-                                    <ErrorMessage
-                                        component="span"
-                                        name="password"
-                                        className="form-error" />
-                                </div>
+                                    <div className="cadastro-form-group">
+                                        <Field
+                                            name="senha_cliente"
+                                            className="form-field"
+                                            type="password"
+                                            placeHolder="Senha" />
 
-                                <div className="login-form-group">
-                                    <Field
-                                        name="confirmPassword"
-                                        className="form-field"
-                                        type="password"
-                                        placeHolder="Confirme sua Senha" />
+                                        <ErrorMessage
+                                            component="span"
+                                            name="senha_cliente"
+                                            className="form-error" />
+                                    </div>
 
-                                    <ErrorMessage
-                                        component="span"
-                                        name="confirmPassword"
-                                        className="form-error" />
-                                    </div> 
+                                    <div className="cadastro-form-group">
+                                        <Field
+                                            name="confirmPassword"
+                                            className="form-field"
+                                            type="password"
+                                            placeHolder="Confirme sua Senha" />
 
-                                <div className="login-form-group">
-                                    <Field
-                                        name="datanasc_cliente"
-                                        className="form-field"
-                                        placeHolder="Data de Nascimento" />
+                                        <ErrorMessage
+                                            component="span"
+                                            name="confirmPassword"
+                                            className="form-error" />
+                                    </div>
 
-                                    <ErrorMessage
-                                        component="span"
-                                        name="datanasc_cliente"
-                                        className="form-error" />
-                                </div> 
+                                    <div className="cadastro-form-group">
+                                        <Field
+                                            name="datanasc_cliente"
+                                            className="form-field"
+                                            placeHolder="Data de Nascimento" />
 
-                                <div className="login-form-group">
-                                    <Field
-                                        name="endereco_cliente"
-                                        className="form-field"
-                                        placeHolder="Endereço" />
+                                        <ErrorMessage
+                                            component="span"
+                                            name="datanasc_cliente"
+                                            className="form-error" />
+                                    </div>
 
-                                    <ErrorMessage
-                                        component="span"
-                                        name="endereco_cliente"
-                                        className="form-error" />
-                                </div> 
+                                    <div className="cadastro-form-group">
+                                        <Field
+                                            name="endereco_cliente"
+                                            className="form-field"
+                                            placeHolder="Endereço" />
 
-                                <div className="login-form-group">
-                                    <Field
-                                        name="rg_cliente"
-                                        className="form-field"
-                                        placeHolder="RG" />
+                                        <ErrorMessage
+                                            component="span"
+                                            name="endereco_cliente"
+                                            className="form-error" />
+                                    </div>
 
-                                    <ErrorMessage
-                                        component="span"
-                                        name="rg_cliente"
-                                        className="form-error" />
-                                </div> 
+                                    <div className="cadastro-form-group">
+                                        <Field
+                                            name="rg_cliente"
+                                            className="form-field"
+                                            placeHolder="RG" />
 
-                                <div className="login-form-group">
-                                    <Field
-                                        name="cpf_cliente"
-                                        className="form-field"
-                                        placeHolder="CPF" />
+                                        <ErrorMessage
+                                            component="span"
+                                            name="rg_cliente"
+                                            className="form-error" />
+                                    </div>
 
-                                    <ErrorMessage
-                                        component="span"
-                                        name="cpf_cliente"
-                                        className="form-error" />
-                                </div> 
-                                
-                                <br />
+                                    <div className="cadastro-form-group">
+                                        <Field
+                                            name="cpf_cliente"
+                                            className="form-field"
+                                            placeHolder="CPF" />
 
-                                <button
-                                    className="button"
-                                    type="submit" class="btn btn-success">Cadastrar</button>
+                                        <ErrorMessage
+                                            component="span"
+                                            name="cpf_cliente"
+                                            className="form-error" />
+                                    </div>
 
-                            </Form>
-                        </Formik>
+                                    <br />
+
+                                    <button
+                                        className="button"
+                                        type="submit" class="btn btn-success">Cadastrar</button>
+
+                                </Form>
+                            </Formik>
                         </div>
                     </div>
                 </TitlePage>
