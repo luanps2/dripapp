@@ -61,6 +61,7 @@ app.post("/login", (req, res) => {
 
     db.query("SELECT * FROM cliente WHERE email_cliente = ?", [email_cliente], (err, result) => {
         if (result.length > 0) {
+
             bcrypt.compare(senha_cliente, result[0].senha_cliente,
                 (erro, result) => {
                     if (result) {
@@ -101,6 +102,19 @@ app.post("/produtos", (req, res) => {
     });
 
 });
+
+app.post("/pesquisarprodutos", (req, res) => {
+
+    const nomeProduto = req.body.nome_produto;
+    const sql = "SELECT * FROM produto WHERE nome_produto LIKE %?%";
+
+    db.query(sql, [nomeProduto], (erro, result) => {
+        if (erro) {
+            alert(erro)
+        }
+        res.send("Lista de produtos:")
+    } )
+})
 
 
 
