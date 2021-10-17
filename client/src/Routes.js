@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
 import Produtos from './pages/Produtos';
 import Sobre from './pages/Sobre';
+import PesquisarProdutos from './pages/PesquisarProdutos';
 
 const func = () => {  
     return (
@@ -28,6 +29,10 @@ const func = () => {
 
             <Route exact path="/produtos">
                 <Produtos/>
+            </Route>
+
+            <Route exact path="/pesquisarprodutos">
+                <PesquisarProdutos/>
             </Route>
 
             <Route exact path="/sobre">

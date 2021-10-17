@@ -18,6 +18,7 @@ function Header() {
                         <li> <Link to="/login"> Login</Link></li>
                         <li> <Link to="/cadastro">Cadastro</Link></li>
                         <li> <Link to="/produtos">Produtos</Link></li>
+                        <li> <Link to="/pesquisarprodutos">Pesquisar</Link></li>
                         <li> <Link to="/acessorios">Acessórios</Link></li>
                         <li> <Link to="/marcas">Marcas</Link></li>
                         <li> <Link to="/sobre">Sobre</Link></li>

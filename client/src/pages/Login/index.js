@@ -5,7 +5,7 @@ import { ContainerPage, TitlePage } from "../../componets/Main";
 import '../../../src/App.css';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Axios from "axios";
-import * as yup from "yup";
+// import * as yup from "yup";
 
 const Page = () => {
     const handleClickLogin = (values) => {
