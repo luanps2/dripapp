@@ -5,8 +5,12 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
 import Produtos from './pages/Produtos';
+import Produto from './pages/PesquisarProdutos/produto'
 import Sobre from './pages/Sobre';
 import PesquisarProdutos from './pages/PesquisarProdutos';
+import ListarProdutos from "./pages/ListarProdutos";
+
+
 
 const func = () => {  
     return (
@@ -42,6 +46,16 @@ const func = () => {
             <Route exact path="/sair">
                 <Login/>
             </Route>
+
+            <Route exact path="/listarprodutos">
+                <ListarProdutos/>
+            </Route>
+
+            {/* <Route exact path="/produto/:produto_id">
+                <Produto/>
+            </Route> */}
+
+            <Route path="/produto/:produto_id" component={Produto} />
 
         </Switch>
     )

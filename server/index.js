@@ -3,10 +3,11 @@ const app = express();
 const mysql = require("mysql");
 const cors = require('cors');
 const bcrypt = require("bcrypt");
+const { response } = require('express');
 const saltRounds = 10;
 
 
-const db = mysql.createPool({
+const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "admin",
@@ -28,7 +29,7 @@ app.post("/cadastro", (req, res) => {
     const cpf_cliente = req.body.cpf_cliente;
 
     const sql = "SELECT * FROM cliente WHERE email_cliente = ?";
-   
+
     db.query(sql, [email_cliente],
         (err, result) => {
             if (err) {
@@ -103,19 +104,33 @@ app.post("/produtos", (req, res) => {
 
 });
 
-app.post("/pesquisarprodutos", (req, res) => {
+app.get("/pesquisarprodutos/:nome_produto", (req, res) => {
 
-    const nomeProduto = req.body.nome_produto;
-    const sql = "SELECT * FROM produto WHERE nome_produto LIKE %?%";
+    const nomeProduto = req.params.nome_produto;
+    const sql = `SELECT * FROM produto WHERE nome_produto LIKE "%${nomeProduto}%"`;
 
-    db.query(sql, [nomeProduto], (erro, result) => {
-        if (erro) {
-            alert(erro)
-        }
-        res.send("Lista de produtos:")
-    } )
+        db.query(sql, [nomeProduto], (erro, result) => {
+
+            if (erro) {
+                console.log(erro)
+            }
+            res.send(result);
+        })
 })
 
+app.get("/produto/:produto_id", (req, res) => {
+
+    const produto_id = req.params.produto_id;
+    const sql = `SELECT * FROM produto WHERE produto_id = ${produto_id}`;
+
+        db.query(sql, [produto_id], (erro, result) => {
+
+            if (erro) {
+                console.log(erro)
+            }
+            res.send(result);
+        })
+})
 
 
 
@@ -123,6 +138,7 @@ app.post("/pesquisarprodutos", (req, res) => {
 app.get('/', (req, res) => {
     res.send("Hello world")
 })
+
 
 app.listen(3001, () => {
     console.log("Rodando na porta 3001")
